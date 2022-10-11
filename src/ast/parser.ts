@@ -1,9 +1,8 @@
-import { parse as _sfcParse, SFCBlock, SFCDescriptor, SFCScriptBlock } from '@vue/compiler-sfc'
+import { parse as _sfcParse, SFCBlock, SFCScriptBlock } from '@vue/compiler-sfc'
 import { baseParse, transform, transformExpression, transformBind, RootNode } from '@vue/compiler-core'
 import { parserOptions } from '@vue/compiler-dom'
 import { parse as _babelParse } from '@babel/parser'
 import { File } from '@babel/types'
-import { babelParserDefaultPlugins } from '@vue/shared'
 
 export interface SFCParsedResult {
   template: RootNode | null
@@ -44,7 +43,6 @@ export function parse(source: string): SFCParsedResult {
     const ast = _babelParse(scriptSetup.content, {
       sourceType: 'module',
       plugins: [
-        ...babelParserDefaultPlugins,
         'typescript',
         'topLevelAwait',
       ],
